@@ -8,6 +8,11 @@ pipeline {
                 sh './mvnw clean package sonar:sonar'
             }
         }
+        post {
+            success {
+                archiveArtifacts 'target/*.jar'
+            }
+        }
       }
     }
 }
