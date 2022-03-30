@@ -1,18 +1,31 @@
 pipeline {
-    agent any
-    stages {
-      stage("build & SonarQube analysis") {
-        agent any
-        steps {
-            withSonarQubeEnv('sonar_qube') {
-                sh './mvnw clean package sonar:sonar'
-            }
-        }
-        post {
-            success {
-                archiveArtifacts 'target/*.jar'
-            }
+  agent any
+  stages {
+    stage("Build") {
+      agent any
+      steps {
+        withSonarQubeEnv('sonar_qube') {
+          sh './mvnw clean package'
         }
       }
     }
+    stage("SonarQube analysis") {
+      agent any
+      steps {
+        withSonarQubeEnv('sonar_qube') {
+          sh './mvnw sonar:sonar'
+        }
+      }
+    }
+    stage("Publish") {
+      agent any
+      steps {
+        post {
+          success {
+            archiveArtifacts 'target/*.jar'
+          }
+        }
+      }
+    }
+  }
 }
