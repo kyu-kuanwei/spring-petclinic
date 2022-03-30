@@ -4,9 +4,7 @@ pipeline {
     stage("Build") {
       agent any
       steps {
-        withSonarQubeEnv('sonar_qube') {
-          sh './mvnw clean package'
-        }
+        sh './mvnw clean package'
       }
     }
     stage("SonarQube analysis") {
@@ -15,13 +13,9 @@ pipeline {
           sh './mvnw sonar:sonar'
         }
       }
-    }
-    stage("Publish") {
-      steps {
-        post {
-          success {
-            archiveArtifacts 'target/*.jar'
-          }
+      post {
+        success {
+          archiveArtifacts 'target/*.jar'
         }
       }
     }
