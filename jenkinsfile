@@ -10,7 +10,6 @@ pipeline {
       }
     }
     stage("SonarQube analysis") {
-      agent any
       steps {
         withSonarQubeEnv('sonar_qube') {
           sh './mvnw sonar:sonar'
@@ -18,7 +17,6 @@ pipeline {
       }
     }
     stage("Publish") {
-      agent any
       steps {
         post {
           success {
