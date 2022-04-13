@@ -21,6 +21,7 @@ pipeline {
                     filter: "archive/target/*.jar",
                     target: 'artifact']);
                 }
+                echo(env.projectName);
             }
         }
 
