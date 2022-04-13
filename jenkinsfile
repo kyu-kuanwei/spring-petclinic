@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("build") {
+        stage("Build") {
             agent any
             steps {
                 sh './mvnw clean package'
@@ -19,6 +19,7 @@ pipeline {
                     step ([$class: 'CopyArtifact',
                     projectName: env.JOB_NAME,
                     filter: "target/*.jar",
+                    buildNumber: env.BUILD_NUMBER,
                     target: 'artifact']);
                 }
             }
