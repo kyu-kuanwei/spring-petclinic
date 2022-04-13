@@ -2,11 +2,6 @@
   hosts: petclinic
   become: yes
   tasks:
-    - name: Install packages
-      yum:
-        name:
-          - java-1.8.0-openjdk
-        state: present
     - name: Copy artifact
       copy:
         src: /var/lib/jenkins/workspace/17647-a2/artifact/target
