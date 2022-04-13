@@ -24,10 +24,10 @@ pipeline {
             }
         }
 
-        // stage('Deploy Ansible') {
-        //     steps {
-        //         ansiblePlaybook playbook: 'main.yaml'
-        //     }
-        // }
+        stage('Deploy Ansible') {
+            steps {
+                ansiblePlaybook playbook: 'main.yaml'
+            }
+        }
     }
 }
