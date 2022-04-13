@@ -1,18 +1,33 @@
 pipeline {
     agent any
     stages {
-      stage("build & SonarQube analysis") {
-        agent any
-        steps {
-            withSonarQubeEnv('sonar_qube') {
-                sh './mvnw clean package sonar:sonar'
+        stage("build") {
+            agent any
+            steps {
+                sh './mvnw clean package'
+            }
+            post {
+                success {
+                    archiveArtifacts 'target/*.jar'
+                }
             }
         }
-        post {
-            success {
-                archiveArtifacts 'target/*.jar'
+
+        stage("Copy Artifact") {
+            steps {
+                script {
+                    step ([$class: 'CopyArtifact',
+                    projectName: '17647-a2',
+                    filter: "target/*.jar",
+                    target: 'artifact']);
+                }
             }
         }
-      }
+
+        // stage('Deploy Ansible') {
+        //     steps {
+        //         ansiblePlaybook playbook: 'main.yaml'
+        //     }
+        // }
     }
 }
