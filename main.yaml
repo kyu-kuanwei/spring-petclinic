@@ -8,9 +8,9 @@
           - java-1.8.0-openjdk
         state: present
     - name: Copy artifact
-        copy:
-          src: /var/lib/jenkins/workspace/17647-a2/artifact/target
-          dest: /home/vagrant/17647-a2/target
+      copy:
+        src: /var/lib/jenkins/workspace/17647-a2/artifact/target
+        dest: /home/vagrant/17647-a2/target
     - name: Deploy application
       shell: java -jar -Dserver.port=80 /home/vagrant/17647-a2/target*.jar
       async: 10
