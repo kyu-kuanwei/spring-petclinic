@@ -5,9 +5,9 @@
     - name: Copy artifact
       copy:
         src: /var/lib/jenkins/workspace/17647-a2/artifact/target
-        dest: /home/vagrant/17647-a2/target
+        dest: /home/vagrant/17647-a2
     - name: Deploy application
-      shell: java -jar -Dserver.port=80 /home/vagrant/17647-a2/target*.jar
-      async: 10
-      poll: 0
+      shell: java -jar -Dserver.port=80 /home/vagrant/17647-a2/target/*.jar
+      # async: 10
+      # poll: 0
 
