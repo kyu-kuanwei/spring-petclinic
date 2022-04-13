@@ -15,13 +15,12 @@ pipeline {
 
         stage("Copy Artifact") {
             steps {
-                // script {
-                //     step ([$class: 'CopyArtifact',
-                //     projectName: env.JOB_NAME,
-                //     filter: "archive/target/*.jar",
-                //     target: 'artifact']);
-                // }
-                echo(env.projectName);
+                script {
+                    step ([$class: 'CopyArtifact',
+                    projectName: '17647-a2',
+                    filter: "archive/target/*.jar",
+                    target: 'artifact']);
+                }
             }
         }
 
