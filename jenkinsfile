@@ -26,7 +26,8 @@ pipeline {
 
         stage('Deploy Ansible') {
             steps {
-                ansiblePlaybook playbook: 'main.yaml'
+                sh 'ansible-playbook main.yaml'
+                // ansiblePlaybook playbook: 'main.yaml'
             }
         }
     }
