@@ -18,8 +18,7 @@ pipeline {
                 script {
                     step ([$class: 'CopyArtifact',
                     projectName: env.JOB_NAME,
-                    filter: "target/*.jar",
-                    buildNumber: env.BUILD_NUMBER,
+                    filter: "archive/target/*.jar",
                     target: 'artifact']);
                 }
             }
