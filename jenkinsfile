@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     step ([$class: 'CopyArtifact',
-                    projectName: '17647-a2',
+                    projectName: 'spring-petclinic',
                     filter: "target/*.jar",
                     target: 'artifact']);
                 }
