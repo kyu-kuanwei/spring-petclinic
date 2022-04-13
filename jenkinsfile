@@ -18,7 +18,7 @@ pipeline {
                 script {
                     step ([$class: 'CopyArtifact',
                     projectName: '17647-a2',
-                    filter: "archive/target/*.jar",
+                    filter: "/target/*.jar",
                     target: 'artifact']);
                 }
             }
